@@ -84,12 +84,18 @@ This application uses the following AI services:
 |---------|------------|------|
 | AI Scan Receipt (OCR) | Tesseract.js + Google Gemini Vision | [Tesseract.js](https://tesseract.projectnaptha.com/) · [Google AI Studio](https://aistudio.google.com/apikey) |
 | AI Assistant | Google Gemini Pro | [Google AI Studio](https://aistudio.google.com/apikey) |
-| ML Backend | FastAPI (separate service) | Set `FASTAPI_URL` in `.env.local` |
+| ML Model (Classification & Prediction) | Trained ML Model | [Download Model](https://drive.google.com/file/d/1JQQ08x2UQO5bABtb8DIFjrgzV6hEXYhc/view?usp=drive_link) |
+| ML Backend | FastAPI (separate service) | [FastAPI Service](https://yobby15-catatanku-fastapi.hf.space/) |
 
 **How to get a Gemini API Key:**
 1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
 2. Create a new API key
 3. Copy it to `GEMINI_API_KEY` in your `.env.local`
+
+**How to load the ML Model:**
+1. Download the model from the link above
+2. Follow the setup instructions in the [FastAPI repository](https://github.com/Capstone-Catatanku/catatanku-fastapi)
+3. Set `FASTAPI_URL` in `.env.local` to point to your running FastAPI service
 
 ---
 
