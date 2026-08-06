@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { getUser } from "@/lib/auth"
+import { hitungMetrikTabungan } from "@/lib/savingCalculations"
 
 export async function GET() {
   const user = await getUser()
@@ -14,15 +15,12 @@ export async function GET() {
 
   const data = goals.map(g => ({
     ...g,
-    progressPercent: Number(g.targetAmount) > 0
-      ? Math.round((Number(g.currentAmount) / Number(g.targetAmount)) * 100)
-      : 0,
-    remainingAmount: Number(g.targetAmount) - Number(g.currentAmount),
-    // Estimasi sisa kali nabung berdasarkan saldo sekarang
-    estimasiKaliNabung: g.planAmount && Number(g.planAmount) > 0
-      ? Math.ceil((Number(g.targetAmount) - Number(g.currentAmount)) / Number(g.planAmount))
-      : null
-  }))
+    ...hitungMetrikTabungan(
+    Number(g.currentAmount),
+    Number(g.targetAmount),
+    g.planAmount ? Number(g.planAmount) : null
+  )
+}))
 
   return NextResponse.json({ data, message: "Berhasil mengambil data tabungan" })
 }

@@ -34,9 +34,19 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+
+.env.local
+.env.*.local
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#pengujian
+__pycache__/
+.venv/
+
+playwright-report/
+test-results/

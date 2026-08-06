@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getUser } from "@/lib/auth";
+import { isLimitKuota } from "@/lib/deteksiLimitKuota";
 
 const FASTAPI_URL = process.env.FASTAPI_URL ?? "https://yobby15-catatanku-fastapi.hf.space";
 
@@ -91,7 +92,7 @@ ${message}`;
     let reply = aiData.reply ?? "Maaf, tidak ada respons dari AI.";
 
     // Tangkap pesan error limit kuota dari API agar dapat menampilkan peringatan yang lebih ramah pengguna
-    if (reply.includes("429") || reply.includes("RESOURCE_EXHAUSTED") || reply.includes("quota")) {
+    if (isLimitKuota(reply)) {
       reply = "Waduh bro, AI-nya lagi kepanasan nih (kena limit sistem). Sabar ya, tunggu sekitar 1 menitan terus coba chat lagi! 🙏😂";
     }
 
