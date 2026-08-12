@@ -18,6 +18,10 @@ CatatanKu is a personal finance web application designed specifically for studen
 
 ## ⚙️ Environment Setup
 
+## NOTE
+- Link Hosting         : https://catatanku-app-wybi-three.vercel.app
+- Link Postman Testing : https://documenter.getpostman.com/view/56932791/2sBY4WpcRK
+
 ### Prerequisites
 
 Make sure you have installed:
